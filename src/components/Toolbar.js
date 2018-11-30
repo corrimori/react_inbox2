@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 
 class Toolbar extends Component {
   render() {
-    const { selectAll, markedRead, selectedIndicator, isSelected } = this.props;
+    const {
+      selectAll,
+      selectedIndicator,
+      isSelected,
+      markedRead,
+      markedUnread,
+    } = this.props;
     return (
       <div className="row toolbar">
         <div className="col-md-12">
@@ -22,11 +28,13 @@ class Toolbar extends Component {
             />
           </button>
 
-          <button onClick={isSelected} className="btn btn-default">
+          <button onClick={markedRead} className="btn btn-default">
             Mark As Read
           </button>
 
-          <button className="btn btn-default">Mark As Unread</button>
+          <button onClick={markedUnread} className="btn btn-default">
+            Mark As Unread
+          </button>
 
           <select className="form-control label-select">
             <option>Apply label</option>
