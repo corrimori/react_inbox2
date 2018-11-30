@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Toolbar extends Component {
   render() {
+    const { selectAll, markedRead, selectedIndicator, isSelected } = this.props;
     return (
       <div className="row toolbar">
         <div className="col-md-12">
@@ -15,10 +16,15 @@ class Toolbar extends Component {
           </a>
 
           <button className="btn btn-default">
-            <i className="fa fa-minus-square-o" />
+            <i
+              onClick={isSelected}
+              className={`fa fa${selectedIndicator()}-square-o`}
+            />
           </button>
 
-          <button className="btn btn-default">Mark As Read</button>
+          <button onClick={isSelected} className="btn btn-default">
+            Mark As Read
+          </button>
 
           <button className="btn btn-default">Mark As Unread</button>
 
@@ -46,3 +52,7 @@ class Toolbar extends Component {
 }
 
 export default Toolbar;
+
+// className on select all check OR minus
+// "fa fa-minus-square-o"
+// "fa fa-check-square-o"

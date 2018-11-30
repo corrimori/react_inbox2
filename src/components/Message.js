@@ -2,8 +2,10 @@ import React from 'react';
 
 const Message = ({ message, toggleStarred, toggleSelected }) => {
   // array of labels stored in labelList
-  let labelList = message.labels.map(label => (
-    <span className="label label-warning">{label}</span>
+  let labelList = message.labels.map((label, index) => (
+    <span key={index} className="label label-warning">
+      {label}
+    </span>
   ));
 
   return (

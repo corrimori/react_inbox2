@@ -87,10 +87,79 @@ class App extends Component {
     this.setState(this.state.messages.concat(message));
   };
 
+  markedRead = message => {
+    console.log('in markedRead...');
+    // message.read
+    // this.setState(this.state.message.concat(message));
+  };
+
+  selectAll = () => {
+    console.log('in select All...');
+    // make a copy of messages and filter out selected
+    // if all messages are selected, deselect all
+    const messages = this.state.messages.map(el => {
+      el.selected = true;
+      return el;
+
+      // const messages = this.state.messages.filter( el => el.selected = true)
+    });
+    this.setState({ messages });
+  };
+
+  deselectAll = () => {
+    console.log('in deselect All...');
+    const messages = this.state.messages.map(el => {
+      el.selected = false;
+      return el;
+    });
+  };
+
+  selectedIndicator = () => {
+    let totalMessageCnt = this.state.messages.length;
+    let selectedAmt = this.state.messages.filter(message => message.selected)
+      .length;
+
+    let indicator = '';
+
+    if (selectedAmt === totalMessageCnt) {
+      indicator = '-check';
+    } else if (selectedAmt === 0) {
+      indicator = '';
+    } else {
+      indicator = '-minus';
+    }
+
+    return indicator;
+  };
+
+  isSelected = (selectAll, deselectAll) => {
+    console.log('in isSelected...');
+    let totalMessageCnt = this.state.messages.length;
+    console.log('total # messages>>>', totalMessageCnt);
+    let selectedAmt = this.state.messages.filter(message => message.selected)
+      .length;
+    console.log('selected # messages>>>', selectedAmt);
+
+    if (selectedAmt === totalMessageCnt) {
+      deselectAll();
+    } else {
+      selectAll();
+    }
+
+    // make a copy of messages and filter out selected
+    // const messages = this.state.messages.filter(el => (el.selected = true));
+    // console.log('messages selected-->', messages);
+  };
+
   render() {
     return (
       <div className="App">
-        <Toolbar />
+        <Toolbar
+          selectAll={this.selectAll}
+          markedRead={this.markedRead}
+          isSelected={this.isSelected}
+          selectedIndicator={this.selectedIndicator}
+        />
         <Messages
           messages={this.state.messages}
           toggleStarred={this.toggleStarred}
