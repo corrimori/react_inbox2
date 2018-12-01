@@ -9,6 +9,8 @@ class Toolbar extends Component {
       markedUnread,
       unreadMessages,
       deleteMessage,
+      addLabel,
+      removeLabel,
     } = this.props;
     console.log('unread========', unreadMessages);
     return (
@@ -38,14 +40,28 @@ class Toolbar extends Component {
             Mark As Unread
           </button>
 
-          <select className="form-control label-select">
+          <select
+            className="form-control label-select"
+            onChange={label => {
+              addLabel(label.target.value);
+              console.log('label###########', label);
+              console.log('target.value########', label.target.value);
+            }}
+          >
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select className="form-control label-select">
+          <select
+            className="form-control label-select"
+            onChange={label => {
+              removeLabel(label.target.value);
+              console.log('label@@@@@@@@@', label);
+              console.log('target.value@@@@@@@@@@', label.target.value);
+            }}
+          >
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>

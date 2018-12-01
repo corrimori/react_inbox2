@@ -185,6 +185,30 @@ class App extends Component {
     return unreadMessagesCnt;
   };
 
+  // label in parameter is target.value
+  addLabel = label => {
+    console.log('in add label...');
+    messages.map(message => {
+      if (!message.labels.includes(label) && message.selected) {
+        message.labels.push(label);
+      }
+      return message;
+    });
+    this.setState({ messages });
+  };
+
+  removeLabel = label => {
+    console.log('in remove label...');
+    messages.map(message => {
+      if (message.labels.includes(label) && message.selected) {
+        // filters thru all labels without label to delete
+        message.labels = message.labels.filter(el => el !== label);
+      }
+      return message;
+    });
+    this.setState({ messages });
+  };
+
   render() {
     return (
       <div className="App">
@@ -196,6 +220,8 @@ class App extends Component {
           selectedIndicator={this.selectedIndicator}
           unreadMessages={this.unreadMessages}
           deleteMessage={this.deleteMessage}
+          addLabel={this.addLabel}
+          removeLabel={this.removeLabel}
         />
         <Messages
           messages={this.state.messages}
