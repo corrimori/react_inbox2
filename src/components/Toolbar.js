@@ -3,17 +3,19 @@ import React, { Component } from 'react';
 class Toolbar extends Component {
   render() {
     const {
-      selectAll,
       selectedIndicator,
       isSelected,
       markedRead,
       markedUnread,
+      unreadMessages,
+      deleteMessage,
     } = this.props;
+    console.log('unread========', unreadMessages);
     return (
       <div className="row toolbar">
         <div className="col-md-12">
           <p className="pull-right">
-            <span className="badge badge">2</span>
+            <span className="badge badge">{unreadMessages()}</span>
             unread messages
           </p>
 
@@ -50,7 +52,7 @@ class Toolbar extends Component {
             <option value="gschool">gschool</option>
           </select>
 
-          <button className="btn btn-default">
+          <button onClick={deleteMessage} className="btn btn-default">
             <i className="fa fa-trash-o" />
           </button>
         </div>

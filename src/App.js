@@ -171,6 +171,20 @@ class App extends Component {
     }
   };
 
+  deleteMessage = () => {
+    console.log('in delete Message...');
+    let messages = this.state.messages.filter(message => !message.selected);
+    this.setState({ messages });
+    this.unreadMessages();
+  };
+
+  unreadMessages = () => {
+    let unreadMessagesCnt = this.state.messages.filter(message => !message.read)
+      .length;
+    console.log('unread messages--->', unreadMessagesCnt);
+    return unreadMessagesCnt;
+  };
+
   render() {
     return (
       <div className="App">
@@ -180,6 +194,8 @@ class App extends Component {
           markedUnread={this.markedUnread}
           isSelected={this.isSelected}
           selectedIndicator={this.selectedIndicator}
+          unreadMessages={this.unreadMessages}
+          deleteMessage={this.deleteMessage}
         />
         <Messages
           messages={this.state.messages}
