@@ -213,13 +213,12 @@ class App extends Component {
     let selectedAmt = this.state.messages.filter(message => message.selected)
       .length;
     let disable = '';
-
     if (selectedAmt === 0) {
       disable = 'disabled';
     }
-    console.log('disable**************', disable);
     return disable;
   };
+  // .length === 0 : disable = 'disabled': disable = ''
 
   render() {
     return (
