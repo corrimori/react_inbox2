@@ -209,6 +209,18 @@ class App extends Component {
     this.setState({ messages });
   };
 
+  noSelectionDisable = () => {
+    let selectedAmt = this.state.messages.filter(message => message.selected)
+      .length;
+    let disable = '';
+
+    if (selectedAmt === 0) {
+      disable = 'disabled';
+    }
+    console.log('disable**************', disable);
+    return disable;
+  };
+
   render() {
     return (
       <div className="App">
@@ -222,6 +234,7 @@ class App extends Component {
           deleteMessage={this.deleteMessage}
           addLabel={this.addLabel}
           removeLabel={this.removeLabel}
+          noSelectionDisable={this.noSelectionDisable}
         />
         <Messages
           messages={this.state.messages}

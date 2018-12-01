@@ -11,6 +11,7 @@ class Toolbar extends Component {
       deleteMessage,
       addLabel,
       removeLabel,
+      noSelectionDisable,
     } = this.props;
     console.log('unread========', unreadMessages);
     return (
@@ -32,16 +33,25 @@ class Toolbar extends Component {
             />
           </button>
 
-          <button onClick={markedRead} className="btn btn-default">
+          <button
+            onClick={markedRead}
+            className="btn btn-default"
+            disabled={`${noSelectionDisable()}`}
+          >
             Mark As Read
           </button>
 
-          <button onClick={markedUnread} className="btn btn-default">
+          <button
+            onClick={markedUnread}
+            className="btn btn-default"
+            disabled={`${noSelectionDisable()}`}
+          >
             Mark As Unread
           </button>
 
           <select
             className="form-control label-select"
+            disabled={`${noSelectionDisable()}`}
             onChange={label => {
               addLabel(label.target.value);
               console.log('label###########', label);
@@ -56,6 +66,7 @@ class Toolbar extends Component {
 
           <select
             className="form-control label-select"
+            disabled={`${noSelectionDisable()}`}
             onChange={label => {
               removeLabel(label.target.value);
               console.log('label@@@@@@@@@', label);
@@ -68,7 +79,11 @@ class Toolbar extends Component {
             <option value="gschool">gschool</option>
           </select>
 
-          <button onClick={deleteMessage} className="btn btn-default">
+          <button
+            onClick={deleteMessage}
+            className="btn btn-default"
+            disabled={`${noSelectionDisable()}`}
+          >
             <i className="fa fa-trash-o" />
           </button>
         </div>
